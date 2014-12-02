@@ -1,0 +1,15 @@
+{
+  "name": "nlcst-affix-emoticon-modifier",
+  "version": "0.1.0",
+  "description": "Merge affix emoticons into the previous sentence in NLCST",
+  "license": "MIT",
+  "keywords": [
+    "nlcst",
+    "affix",
+    "emoticon"
+  ],
+  "repository": "wooorm/nlcst-affix-emoticon-modifier",
+  "scripts": [
+    "index.js"
+  ]
+}

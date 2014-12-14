@@ -1,6 +1,6 @@
 {
   "name": "nlcst-affix-emoticon-modifier",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Merge affix emoticons into the previous sentence in NLCST",
   "license": "MIT",
   "keywords": [

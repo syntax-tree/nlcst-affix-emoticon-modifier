@@ -1,36 +1,43 @@
+/**
+ * @author Titus Wormer
+ * @copyright 2014-2015 Titus Wormer
+ * @license MIT
+ * @module nlcst:affix-emoticon-modifier
+ * @fileoverview Merge affix emoticons into the previous sentence in NLCST.
+ */
+
 'use strict';
 
-/**
- * Constant: node types.
+/* eslint-env commonjs */
+
+/*
+ * Dependencies.
  */
 
-var EMOTICON_NODE;
+var modifier = require('unist-util-modify-children');
 
-EMOTICON_NODE = 'EmoticonNode';
+/*
+ * Constants: node types.
+ */
+
+var EMOTICON_NODE = 'EmoticonNode';
 
 /**
- * Move emoticons following a terminal marker (thus in
- * the next sentence) to the previous sentence.
+ * Merge emoticons into an `EmoticonNode`.
  *
- * @param {NLCSTNode} child
- * @param {number} index
- * @param {NLCSTParagraphNode} parent
- * @return {undefined|number}
+ * @param {CSTNode} child - Node to check.
+ * @param {number} index - Position of `child` in `parent`.
+ * @param {CSTNode} parent - Parent of `child`.
+ * @return {number?} - Either void, or the next index to
+ *   iterate over.
  */
+function mergeAffixEmoticon(child, index, parent) {
+    var children = child.children;
+    var position;
+    var node;
+    var prev;
 
-function mergeAffixEmoji(child, index, parent) {
-    var children,
-        prev,
-        position,
-        node;
-
-    children = child.children;
-
-    if (
-        children &&
-        children.length &&
-        index !== 0
-    ) {
+    if (children && children.length && index !== 0) {
         position = -1;
 
         while (children[++position]) {
@@ -45,46 +52,27 @@ function mergeAffixEmoji(child, index, parent) {
 
                 child.children = children.slice(position + 1);
 
-                /**
+                if (node.position && child.position && prev.position) {
+                    prev.position.end = child.position.start =
+                        node.position.end;
+                }
+
+                /*
                  * Next, iterate over the node again.
                  */
 
                 return index;
-            } else if (node.type !== 'WhiteSpaceNode') {
+            }
+
+            if (node.type !== 'WhiteSpaceNode') {
                 break;
             }
         }
     }
 }
 
-/**
- * Attach.
+/*
+ * Expose.
  */
 
-var affixEmojiModifier;
-
-function attach(parser) {
-    if (!parser || !parser.parse) {
-        throw new Error(
-            '`parser` is not a valid parser for ' +
-            '`attach(parser)`. Make sure something ' +
-            'like `parse-latin` is passed.'
-        );
-    }
-
-    /**
-     * Make sure to not re-attach the modifier.
-     */
-
-    if (!affixEmojiModifier) {
-        affixEmojiModifier = parser.constructor.modifier(mergeAffixEmoji);
-    }
-
-    parser.useFirst('tokenizeParagraph', affixEmojiModifier);
-}
-
-/**
- * Expose `attach`.
- */
-
-module.exports = attach;
+module.exports = modifier(mergeAffixEmoticon);

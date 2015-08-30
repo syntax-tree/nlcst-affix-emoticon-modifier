@@ -1,6 +1,6 @@
 {
   "name": "nlcst-affix-emoticon-modifier",
-  "main": "index.js",
+  "main": "nlcst-affix-emoticon-modifier.js",
   "description": "Merge affix emoticons into the previous sentence in NLCST",
   "license": "MIT",
   "keywords": [
@@ -23,8 +23,11 @@
     "components/",
     "coverage/",
     "node_modules/",
+    "test/",
+    "build.js",
+    "example.js",
+    "index.js",
     "component.json",
-    "package.json",
-    "test.js"
+    "package.json"
   ]
 }

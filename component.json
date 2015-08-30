@@ -8,6 +8,9 @@
     "affix",
     "emoticon"
   ],
+  "dependencies": {
+    "wooorm/unist-util-modify-children": "^1.0.0"
+  },
   "repository": "wooorm/nlcst-affix-emoticon-modifier",
   "scripts": [
     "index.js"

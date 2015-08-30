@@ -1,0 +1,7 @@
+build/
+components/
+coverage/
+build.js
+example.js
+nlcst-affix-emoticon-modifier.js
+nlcst-affix-emoticon-modifier.min.js

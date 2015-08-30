@@ -1,6 +1,8 @@
 # nlcst-affix-emoticon-modifier [![Build Status](https://img.shields.io/travis/wooorm/nlcst-affix-emoticon-modifier.svg)](https://travis-ci.org/wooorm/nlcst-affix-emoticon-modifier) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/nlcst-affix-emoticon-modifier.svg)](https://codecov.io/github/wooorm/nlcst-affix-emoticon-modifier)
 
-Merge affix emoticons into the previous sentence in NLCST.
+Move initial emoticons into the previous sentence. Useful because many people
+place an emoticon, representing emotion related to the previous sentence, after
+a terminal marker. :unamused:
 
 Implemented by [retext-emoji](https://github.com/wooorm/retext-emoji), but
 separated for use by standalone (non-[retext](https://github.com/wooorm/retext))

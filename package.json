@@ -20,15 +20,11 @@
     "browserify": "^11.0.0",
     "esmangle": "^1.0.0",
     "istanbul": "^0.3.0",
-    "mdast": "^1.0.0",
-    "mdast-comment-config": "^1.0.0",
-    "mdast-github": "^1.0.0",
-    "mdast-lint": "^1.0.0",
-    "mdast-slug": "^1.0.0",
-    "mdast-validate-links": "^1.0.0",
     "mocha": "^2.0.0",
     "nlcst-emoji-modifier": "^1.0.0",
     "nlcst-emoticon-modifier": "^1.0.0",
+    "remark-cli": "^2.1.0",
+    "remark-preset-wooorm": "^1.0.0",
     "retext": "^1.0.0-rc.4",
     "retext-english": "^1.0.0",
     "xo": "^0.17.1"
@@ -42,7 +38,7 @@
     "make": "npm run lint && npm run test-coverage",
     "bundle": "browserify index.js --no-builtins -s nlcstAffixEmoticonModifier > nlcst-affix-emoticon-modifier.js",
     "postbundle": "esmangle nlcst-affix-emoticon-modifier.js > nlcst-affix-emoticon-modifier.min.js",
-    "build-md": "mdast . --quiet",
+    "build-md": "remark . --quiet --frail --output",
     "build": "npm run bundle && npm run build-md"
   },
   "xo": {
@@ -53,5 +49,8 @@
     "ignore": [
       "nlcst-affix-emoticon-modifier.js"
     ]
+  },
+  "remarkConfig": {
+    "presets": "wooorm"
   }
 }

@@ -1,8 +1,8 @@
 # nlcst-affix-emoticon-modifier [![Build Status](https://img.shields.io/travis/wooorm/nlcst-affix-emoticon-modifier.svg)](https://travis-ci.org/wooorm/nlcst-affix-emoticon-modifier) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/nlcst-affix-emoticon-modifier.svg)](https://codecov.io/github/wooorm/nlcst-affix-emoticon-modifier)
 
-Move initial emoticons into the previous sentence. Useful because many people
+Move initial emoticons into the previous sentence.  Useful because many people
 place an emoticon, representing emotion related to the previous sentence, after
-a terminal marker. :unamused:
+a terminal marker.  :unamused:
 
 Implemented by [retext-emoji](https://github.com/wooorm/retext-emoji), but
 separated for use by standalone (non-[retext](https://github.com/wooorm/retext))
@@ -15,11 +15,6 @@ processing.
 ```bash
 npm install nlcst-affix-emoticon-modifier
 ```
-
-**nlcst-affix-emoticon-modifier** is also available for [bower](http://bower.io/#install-packages),
-[component](https://github.com/componentjs/component), and
-[duo](http://duojs.org/#getting-started), and as an AMD, CommonJS, and globals
-module, [uncompressed](nlcst-affix-emoticon-modifier.js) and [compressed](nlcst-affix-emoticon-modifier.min.js).
 
 ## Usage
 

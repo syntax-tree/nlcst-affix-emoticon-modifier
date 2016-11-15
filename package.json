@@ -33,7 +33,6 @@
   "scripts": {
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test-travis": "npm run test-coverage",
     "test": "npm run test-api",
     "lint": "xo",
     "make": "npm run lint && npm run test-coverage",

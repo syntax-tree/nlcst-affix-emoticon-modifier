@@ -15,8 +15,8 @@ deploy:
     api_key:
       secure: aeYd/dNJUP5qKRVaG5GRDiyaq95dk1dze7biJfq2ZjyV9NkgjLqUnjPDVr8m3H8JDyYkPs+SSu5wk/0FXfVPuVU4j5uOE/QSDolM++BSCdO36WetSjWzVNJEv9z9YmrBu+OyrMgUYM7wG7OMlsR+aHqPUwpZHbsUdIiUQO87G0E=
     file:
-      - "match-casing.js"
-      - "match-casing.min.js"
+      - "nlcst-affix-emoticon-modifier.js"
+      - "nlcst-affix-emoticon-modifier.min.js"
     on:
       tags: true
       node: '7.0'

@@ -4,39 +4,21 @@
 
 /* Dependencies. */
 var assert = require('assert');
-var retext = require('retext');
+var unified = require('unified');
 var english = require('retext-english');
 var emojiModifier = require('nlcst-emoji-modifier');
 var emoticonModifier = require('nlcst-emoticon-modifier');
+var remove = require('unist-util-remove-position');
 var modifier = require('..');
-
-/* Methods. */
-var dequal = assert.deepEqual;
 
 /* Fixtures. */
 var lollipop = require('./fixtures/lollipop');
 var smile = require('./fixtures/smile');
 
-/* Processors. */
-var position = retext(english).use(plugin);
-var noPosition = retext(english).use(plugin).use(function (instance) {
-  instance.Parser.prototype.position = false;
-});
-
 /* Short-cut to access the CST. */
-function process(fixture, processor) {
-  var cst;
-
-  processor.process(fixture, function (err, file) {
-    /* istanbul ignore next */
-    if (err) {
-      throw err;
-    }
-
-    cst = file.namespace('retext').cst;
-  });
-
-  return cst;
+function process(fixture, positionless) {
+  var processor = unified().use(english).use(plugin);
+  return processor.run(processor.parse(fixture, {position: !positionless}));
 }
 
 /*
@@ -53,19 +35,14 @@ describe('nlcst-affix-emoticon-modifier()', function () {
     );
   });
 
-  it('should merge at sentence-start', function () {
-    check('Lol! :lollipop: That’s cool.', lollipop);
-    check('Lol! :) That’s cool.', smile);
+  it('should work', function () {
+    assert.deepEqual(process('Lol! :lollipop: That’s cool.'), lollipop, 'a1');
+    assert.deepEqual(process('Lol! :lollipop: That’s cool.', true), remove(lollipop, true), 'a2');
+
+    assert.deepEqual(process('Lol! :) That’s cool.'), smile, 'b1');
+    assert.deepEqual(process('Lol! :) That’s cool.', true), remove(smile, true), 'b2');
   });
 });
-
-/**
- * Short-cut to access the CST.
- */
-function check(fixture, node) {
-  dequal(process(fixture, position), node);
-  dequal(process(fixture, noPosition), clean(node));
-}
 
 /**
  * Add modifier to processor.
@@ -74,23 +51,4 @@ function plugin(processor) {
   processor.Parser.prototype.useFirst('tokenizeSentence', emojiModifier);
   processor.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier);
   processor.Parser.prototype.useFirst('tokenizeParagraph', modifier);
-}
-
-/* Clone `object` but omit positional information. */
-function clean(object) {
-  var clone = 'length' in object ? [] : {};
-  var key;
-  var value;
-
-  for (key in object) {
-    value = object[key];
-
-    if (key === 'position') {
-      continue;
-    }
-
-    clone[key] = typeof object[key] === 'object' ? clean(value) : value;
-  }
-
-  return clone;
 }

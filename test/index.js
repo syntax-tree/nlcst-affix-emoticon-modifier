@@ -1,9 +1,7 @@
 'use strict';
 
-/* eslint-env mocha */
-
 /* Dependencies. */
-var assert = require('assert');
+var test = require('tape');
 var unified = require('unified');
 var english = require('retext-english');
 var emojiModifier = require('nlcst-emoji-modifier');
@@ -15,38 +13,53 @@ var modifier = require('..');
 var lollipop = require('./fixtures/lollipop');
 var smile = require('./fixtures/smile');
 
+/*
+ * Tests.
+ */
+
+test('nlcst-affix-emoticon-modifier()', function (t) {
+  t.throws(
+    function () {
+      modifier({});
+    },
+    /Missing children in `parent`/,
+    'should throw when not given a parent'
+  );
+
+  t.deepEqual(
+    process('Lol! :lollipop: That’s cool.'),
+    lollipop,
+    'should merge at sentence-start (1)'
+  );
+
+  t.deepEqual(
+    process('Lol! :lollipop: That’s cool.', true),
+    remove(lollipop, true),
+    'should merge at sentence-start (1, positionless)'
+  );
+
+  t.deepEqual(
+    process('Lol! :) That’s cool.'),
+    smile,
+    'should merge at sentence-start (2)'
+  );
+
+  t.deepEqual(
+    process('Lol! :) That’s cool.', true),
+    remove(smile, true),
+    'should merge at sentence-start (2, positionless)'
+  );
+
+  t.end();
+});
+
 /* Short-cut to access the CST. */
 function process(fixture, positionless) {
   var processor = unified().use(english).use(plugin);
   return processor.run(processor.parse(fixture, {position: !positionless}));
 }
 
-/*
- * Tests.
- */
-
-describe('nlcst-affix-emoticon-modifier()', function () {
-  it('should throw when not given a parent', function () {
-    assert.throws(
-      function () {
-        modifier({});
-      },
-      /Missing children in `parent`/
-    );
-  });
-
-  it('should work', function () {
-    assert.deepEqual(process('Lol! :lollipop: That’s cool.'), lollipop, 'a1');
-    assert.deepEqual(process('Lol! :lollipop: That’s cool.', true), remove(lollipop, true), 'a2');
-
-    assert.deepEqual(process('Lol! :) That’s cool.'), smile, 'b1');
-    assert.deepEqual(process('Lol! :) That’s cool.', true), remove(smile, true), 'b2');
-  });
-});
-
-/**
- * Add modifier to processor.
- */
+/* Add modifier to processor. */
 function plugin(processor) {
   processor.Parser.prototype.useFirst('tokenizeSentence', emojiModifier);
   processor.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier);

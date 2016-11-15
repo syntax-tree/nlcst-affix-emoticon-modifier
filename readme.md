@@ -1,16 +1,15 @@
-# nlcst-affix-emoticon-modifier [![Build Status](https://img.shields.io/travis/wooorm/nlcst-affix-emoticon-modifier.svg)](https://travis-ci.org/wooorm/nlcst-affix-emoticon-modifier) [![Coverage Status](https://img.shields.io/codecov/c/github/wooorm/nlcst-affix-emoticon-modifier.svg)](https://codecov.io/github/wooorm/nlcst-affix-emoticon-modifier)
+# nlcst-affix-emoticon-modifier [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
 Move initial emoticons into the previous sentence.  Useful because many people
 place an emoticon, representing emotion related to the previous sentence, after
 a terminal marker.  :unamused:
 
-Implemented by [retext-emoji](https://github.com/wooorm/retext-emoji), but
-separated for use by standalone (non-[retext](https://github.com/wooorm/retext))
-processing.
+Implemented by [**retext-emoji**][retext-emoji], but separated for use by
+standalone (non-retext) processing.
 
 ## Installation
 
-[npm](https://docs.npmjs.com/cli/install):
+[npm][]:
 
 ```bash
 npm install nlcst-affix-emoticon-modifier
@@ -18,7 +17,7 @@ npm install nlcst-affix-emoticon-modifier
 
 ## Usage
 
-```javascript
+```js
 var affixEmoticon = require('nlcst-affix-emoticon-modifier');
 var emoticon = require('nlcst-emoticon-modifier');
 var inspect = require('unist-util-inspect');
@@ -59,25 +58,32 @@ RootNode[1]
 
 ## API
 
-### affixEmoticonModifier(paragraph)
+### `affixEmoticon(paragraph)`
 
 Merge affix emoticons into the previous sentence.
 
-**Parameters**
+###### Parameters
 
 *   `paragraph` ([`NLCSTParagraphNode`](https://github.com/wooorm/nlcst#paragraphnode)).
 
-**Throws**
-
-*   `Error` — When not given a parent node.
-
-## Related
-
-*   [nlcst](https://github.com/wooorm/nlcst);
-*   [nlcst-emoji-modifier](https://github.com/wooorm/nlcst-emoji-modifier);
-*   [nlcst-emoticon-modifier](https://github.com/wooorm/nlcst-emoticon-modifier);
-*   [retext](https://github.com/wooorm/retext).
-
 ## License
 
-[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/wooorm/nlcst-affix-emoticon-modifier.svg
+
+[travis]: https://travis-ci.org/wooorm/nlcst-affix-emoticon-modifier
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/nlcst-affix-emoticon-modifier.svg
+
+[codecov]: https://codecov.io/github/wooorm/nlcst-affix-emoticon-modifier
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[license]: LICENSE
+
+[author]: http://wooorm.com
+
+[retext-emoji]: https://github.com/wooorm/retext-emoji

@@ -4,3 +4,5 @@
 coverage/
 node_modules/
 build.js
+nlcst-affix-emoticon-modifier.js
+nlcst-affix-emoticon-modifier.min.js

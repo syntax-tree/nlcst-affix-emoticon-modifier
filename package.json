@@ -8,14 +8,18 @@
     "affix",
     "emoticon"
   ],
-  "dependencies": {
-    "unist-util-modify-children": "^1.0.0"
-  },
-  "repository": "wooorm/nlcst-affix-emoticon-modifier",
-  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "repository": "https://github.com/wooorm/nlcst-affix-emoticon-modifier",
+  "bugs": "https://github.com/wooorm/nlcst-affix-emoticon-modifier/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
   "files": [
     "index.js"
   ],
+  "dependencies": {
+    "unist-util-modify-children": "^1.0.0"
+  },
   "devDependencies": {
     "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
@@ -31,15 +35,14 @@
     "xo": "^0.17.1"
   },
   "scripts": {
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js --bare -s nlcstAffixEmoticonModifier > nlcst-affix-emoticon-modifier.js",
+    "build-mangle": "esmangle < nlcst-affix-emoticon-modifier.js > nlcst-affix-emoticon-modifier.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test/index.js",
-    "test": "npm run test-api",
-    "lint": "xo",
-    "make": "npm run lint && npm run test-coverage",
-    "bundle": "browserify index.js --no-builtins -s nlcstAffixEmoticonModifier > nlcst-affix-emoticon-modifier.js",
-    "postbundle": "esmangle nlcst-affix-emoticon-modifier.js > nlcst-affix-emoticon-modifier.min.js",
-    "build-md": "remark . --quiet --frail --output",
-    "build": "npm run bundle && npm run build-md"
+    "test": "npm run build && npm run lint && npm run test-coverage"
   },
   "xo": {
     "space": true,

@@ -64,7 +64,7 @@ Merge affix emoticons into the previous sentence.
 
 ###### Parameters
 
-*   `paragraph` ([`NLCSTParagraphNode`](https://github.com/wooorm/nlcst#paragraphnode)).
+*   `paragraph` ([`NLCSTParagraphNode`][paragraph]).
 
 ## License
 
@@ -72,13 +72,13 @@ Merge affix emoticons into the previous sentence.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/nlcst-affix-emoticon-modifier.svg
+[travis-badge]: https://img.shields.io/travis/syntax-tree/nlcst-affix-emoticon-modifier.svg
 
-[travis]: https://travis-ci.org/wooorm/nlcst-affix-emoticon-modifier
+[travis]: https://travis-ci.org/syntax-tree/nlcst-affix-emoticon-modifier
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/nlcst-affix-emoticon-modifier.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/nlcst-affix-emoticon-modifier.svg
 
-[codecov]: https://codecov.io/github/wooorm/nlcst-affix-emoticon-modifier
+[codecov]: https://codecov.io/github/syntax-tree/nlcst-affix-emoticon-modifier
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -87,3 +87,5 @@ Merge affix emoticons into the previous sentence.
 [author]: http://wooorm.com
 
 [retext-emoji]: https://github.com/wooorm/retext-emoji
+
+[paragraph]: https://github.com/syntax-tree/nlcst#paragraph

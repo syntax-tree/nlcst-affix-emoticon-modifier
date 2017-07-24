@@ -49,13 +49,18 @@ test('nlcst-affix-emoticon-modifier()', function (t) {
 
 /* Short-cut to access the CST. */
 function process(fixture, positionless) {
-  var processor = unified().use(english).use(plugin);
-  return processor.run(processor.parse(fixture, {position: !positionless}));
+  var processor = unified().use(english).use(plugin).freeze();
+
+  if (positionless) {
+    processor.Parser.prototype.position = false;
+  }
+
+  return processor.runSync(processor.parse(fixture));
 }
 
 /* Add modifier to processor. */
-function plugin(processor) {
-  processor.Parser.prototype.useFirst('tokenizeSentence', emojiModifier);
-  processor.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier);
-  processor.Parser.prototype.useFirst('tokenizeParagraph', modifier);
+function plugin() {
+  this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier);
+  this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier);
+  this.Parser.prototype.useFirst('tokenizeParagraph', modifier);
 }

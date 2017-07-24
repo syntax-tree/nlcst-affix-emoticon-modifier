@@ -62,9 +62,11 @@ RootNode[1]
 
 Merge affix emoticons into the previous sentence.
 
-###### Parameters
+##### Parameters
 
-*   `paragraph` ([`NLCSTParagraphNode`][paragraph]).
+###### `paragraph`
+
+The node to process ([`NLCSTParagraphNode`][paragraph]).
 
 ## License
 

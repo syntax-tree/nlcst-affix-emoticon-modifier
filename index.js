@@ -29,7 +29,8 @@ function mergeAffixEmoticon(child, index, parent) {
         child.children = children.slice(position + 1);
 
         if (node.position && child.position && prev.position) {
-          prev.position.end = child.position.start = node.position.end;
+          prev.position.end = node.position.end;
+          child.position.start = node.position.end;
         }
 
         /* Next, iterate over the node again. */

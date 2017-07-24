@@ -1,12 +1,9 @@
 'use strict';
 
-/* Dependencies. */
 var modifier = require('unist-util-modify-children');
 
-/* Expose. */
 module.exports = modifier(mergeAffixEmoticon);
 
-/* Constants: node types. */
 var EMOTICON_NODE = 'EmoticonNode';
 
 /* Merge emoticons into an `EmoticonNode`. */

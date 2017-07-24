@@ -1,6 +1,5 @@
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var unified = require('unified');
 var english = require('retext-english');
@@ -9,13 +8,8 @@ var emoticonModifier = require('nlcst-emoticon-modifier');
 var remove = require('unist-util-remove-position');
 var modifier = require('..');
 
-/* Fixtures. */
 var lollipop = require('./fixtures/lollipop');
 var smile = require('./fixtures/smile');
-
-/*
- * Tests.
- */
 
 test('nlcst-affix-emoticon-modifier()', function (t) {
   t.throws(

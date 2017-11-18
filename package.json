@@ -8,7 +8,7 @@
     "affix",
     "emoticon"
   ],
-  "repository": "https://github.com/syntax-tree/nlcst-affix-emoticon-modifier",
+  "repository": "syntax-tree/nlcst-affix-emoticon-modifier",
   "bugs": "https://github.com/syntax-tree/nlcst-affix-emoticon-modifier/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [

@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '8.0'
+- '9.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
@@ -10,7 +10,7 @@ deploy:
       secure: Rcq68neE4v0LstiDFdSfKXZNTNLzpcVir/UBr5SSyY0ygNymEN+QSjf/XEwUr/B6OC39u5xU76crkAPO+j4fwKHGY7Au+hDchz29QTzzVfvxjp36O7IJNz+P2L7zA5d/iCFoUKgKDJHQ6tTpVMGB09u1YM1zlbIvWF7NSxroMuE=
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
   - provider: releases
     api_key:
       secure: aeYd/dNJUP5qKRVaG5GRDiyaq95dk1dze7biJfq2ZjyV9NkgjLqUnjPDVr8m3H8JDyYkPs+SSu5wk/0FXfVPuVU4j5uOE/QSDolM++BSCdO36WetSjWzVNJEv9z9YmrBu+OyrMgUYM7wG7OMlsR+aHqPUwpZHbsUdIiUQO87G0E=
@@ -19,4 +19,4 @@ deploy:
       - "nlcst-affix-emoticon-modifier.min.js"
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'

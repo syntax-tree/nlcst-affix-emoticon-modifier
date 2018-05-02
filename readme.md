@@ -18,15 +18,15 @@ npm install nlcst-affix-emoticon-modifier
 ## Usage
 
 ```js
-var affixEmoticon = require('nlcst-affix-emoticon-modifier');
-var emoticon = require('nlcst-emoticon-modifier');
-var inspect = require('unist-util-inspect');
-var english = require('parse-english')();
+var affixEmoticon = require('nlcst-affix-emoticon-modifier')
+var emoticon = require('nlcst-emoticon-modifier')
+var inspect = require('unist-util-inspect')
+var english = require('parse-english')()
 
-english.useFirst('tokenizeSentence', emoticon);
-english.useFirst('tokenizeParagraph', affixEmoticon);
+english.useFirst('tokenizeSentence', emoticon)
+english.useFirst('tokenizeParagraph', affixEmoticon)
 
-console.log(inspect(english.parse('Hey. :) How is it going?')));
+console.log(inspect(english.parse('Hey. :) How is it going?')))
 ```
 
 Yields:

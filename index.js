@@ -4,7 +4,7 @@ var modifier = require('unist-util-modify-children')
 
 module.exports = modifier(mergeAffixEmoticon)
 
-var EMOTICON_NODE = 'EmoticonNode'
+var emoticonNode = 'EmoticonNode'
 
 // Merge emoticons into an `EmoticonNode`.
 function mergeAffixEmoticon(child, index, parent) {
@@ -19,7 +19,7 @@ function mergeAffixEmoticon(child, index, parent) {
     while (children[++position]) {
       node = children[position]
 
-      if (node.type === EMOTICON_NODE) {
+      if (node.type === emoticonNode) {
         prev = parent.children[index - 1]
 
         prev.children = prev.children.concat(children.slice(0, position + 1))

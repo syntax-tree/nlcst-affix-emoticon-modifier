@@ -47,7 +47,7 @@ test('nlcst-affix-emoticon-modifier()', function(t) {
   t.end()
 })
 
-/* Short-cut to access the CST. */
+// Short-cut to access the CST.
 function process(fixture, positionless) {
   var processor = unified()
     .use(english)
@@ -61,7 +61,7 @@ function process(fixture, positionless) {
   return processor.runSync(processor.parse(fixture))
 }
 
-/* Add modifier to processor. */
+// Add modifier to processor.
 function plugin() {
   this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
   this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)

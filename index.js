@@ -6,7 +6,7 @@ module.exports = modifier(mergeAffixEmoticon)
 
 var EMOTICON_NODE = 'EmoticonNode'
 
-/* Merge emoticons into an `EmoticonNode`. */
+// Merge emoticons into an `EmoticonNode`.
 function mergeAffixEmoticon(child, index, parent) {
   var children = child.children
   var position
@@ -30,7 +30,7 @@ function mergeAffixEmoticon(child, index, parent) {
           child.position.start = node.position.end
         }
 
-        /* Next, iterate over the node again. */
+        // Next, iterate over the node again.
         return index
       }
 

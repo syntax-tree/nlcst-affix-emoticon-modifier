@@ -10,9 +10,9 @@
   ],
   "repository": "syntax-tree/nlcst-affix-emoticon-modifier",
   "bugs": "https://github.com/syntax-tree/nlcst-affix-emoticon-modifier/issues",
-  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
   "files": [
     "index.js"

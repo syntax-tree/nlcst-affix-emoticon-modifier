@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: aeYd/dNJUP5qKRVaG5GRDiyaq95dk1dze7biJfq2ZjyV9NkgjLqUnjPDVr8m3H8JDyYkPs+SSu5wk/0FXfVPuVU4j5uOE/QSDolM++BSCdO36WetSjWzVNJEv9z9YmrBu+OyrMgUYM7wG7OMlsR+aHqPUwpZHbsUdIiUQO87G0E=
+    secure: OXSGjrw/rBn+m0ivebLeLRBVbWGFKBeSRcowBHBWeBIbBoEog9ZcRyQHRR+t+/JnHB/zyYHwAgsirs2FEQ9UMYwvg2gh5W9E0BwrqOoiiF6iB3IOulmokkx/39YDYo/QI/ErC9+SIvxawsaxcdvLzCtuieYsucb0lCH91ZrSaGA=
   file:
-    - "nlcst-affix-emoticon-modifier.js"
-    - "nlcst-affix-emoticon-modifier.min.js"
+    - 'nlcst-affix-emoticon-modifier.js'
+    - 'nlcst-affix-emoticon-modifier.min.js'
   on:
     tags: true

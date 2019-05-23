@@ -8,18 +8,17 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-Move initial emoticons into the previous sentence.  Useful because many people
-place an emoticon, representing emotion related to the previous sentence, after
-a terminal marker.  :unamused:
+[**nlcst**][nlcst] utility to move initial emoticons into the previous sentence.
+Useful because many people place an emoticon, representing emotion related to
+the previous sentence, after a terminal marker.  :unamused:
 
-Implemented by [**retext-emoji**][retext-emoji], but separated for use by
-standalone (non-retext) processing.
+> **Note**: You probably want to use [retext-emoji][].
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install nlcst-affix-emoticon-modifier
 ```
 
@@ -68,21 +67,23 @@ RootNode[1]
 
 ### `affixEmoticon(paragraph)`
 
-Merge affix emoticons into the previous sentence.
+Merge affix emoticons (`EmoticonNode`) into the previous sentence.
 
 ##### Parameters
 
 ###### `paragraph`
 
-The node to process ([`NLCSTParagraphNode`][paragraph]).
+The node to process ([`Paragraph`][paragraph]).
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/nlcst`][contributing] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -122,10 +123,14 @@ repository, organisation, or community you agree to abide by its terms.
 
 [author]: https://wooorm.com
 
-[retext-emoji]: https://github.com/wooorm/retext-emoji
+[contributing]: https://github.com/syntax-tree/.github/blob/master/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/master/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/master/code-of-conduct.md
+
+[retext-emoji]: https://github.com/retextjs/retext-emoji
+
+[nlcst]: https://github.com/syntax-tree/nlcst
 
 [paragraph]: https://github.com/syntax-tree/nlcst#paragraph
-
-[contributing]: https://github.com/syntax-tree/nlcst/blob/master/contributing.md
-
-[coc]: https://github.com/syntax-tree/nlcst/blob/master/code-of-conduct.md

@@ -22,7 +22,7 @@ the previous sentence, after a terminal marker.  :unamused:
 npm install nlcst-affix-emoticon-modifier
 ```
 
-## Usage
+## Use
 
 ```js
 var affixEmoticon = require('nlcst-affix-emoticon-modifier')
@@ -38,7 +38,7 @@ console.log(inspect(english.parse('Hey. :) How is it going?')))
 
 Yields:
 
-```text
+```txt
 RootNode[1]
 └─ ParagraphNode[3]
    ├─ SentenceNode[4]
@@ -113,7 +113,7 @@ abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[chat-badge]: https://img.shields.io/badge/chat-spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/syntax-tree
 

@@ -75,6 +75,13 @@ Merge affix emoticons (`EmoticonNode`) into the previous sentence.
 
 The node to process ([`Paragraph`][paragraph]).
 
+## Related
+
+*   [`nlcst-emoticon-modifier`](https://github.com/syntax-tree/nlcst-emoticon-modifier)
+    — Support emoticons
+*   [`nlcst-emoji-modifier`](https://github.com/syntax-tree/nlcst-emoji-modifier)
+    — Support emoji
+
 ## Contribute
 
 See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get

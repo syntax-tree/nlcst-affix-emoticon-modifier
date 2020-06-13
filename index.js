@@ -11,7 +11,7 @@ function mergeAffixEmoticon(child, index, parent) {
   var children = child.children
   var position
   var node
-  var prev
+  var previous
 
   if (children && children.length !== 0 && index !== 0) {
     position = -1
@@ -20,13 +20,15 @@ function mergeAffixEmoticon(child, index, parent) {
       node = children[position]
 
       if (node.type === emoticonNode) {
-        prev = parent.children[index - 1]
+        previous = parent.children[index - 1]
 
-        prev.children = prev.children.concat(children.slice(0, position + 1))
+        previous.children = previous.children.concat(
+          children.slice(0, position + 1)
+        )
         child.children = children.slice(position + 1)
 
-        if (node.position && child.position && prev.position) {
-          prev.position.end = node.position.end
+        if (node.position && child.position && previous.position) {
+          previous.position.end = node.position.end
           child.position.start = node.position.end
         }
 

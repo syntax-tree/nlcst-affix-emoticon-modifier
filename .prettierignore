@@ -1,3 +1,5 @@
 coverage/
 nlcst-affix-emoticon-modifier.js
 nlcst-affix-emoticon-modifier.min.js
+*.json
+*.md

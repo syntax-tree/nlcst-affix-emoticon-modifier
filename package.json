@@ -71,7 +71,10 @@
     "esnext": false,
     "ignore": [
       "nlcst-affix-emoticon-modifier.js"
-    ]
+    ],
+    "rules": {
+      "unicorn/explicit-length-check": "off"
+    }
   },
   "remarkConfig": {
     "plugins": [

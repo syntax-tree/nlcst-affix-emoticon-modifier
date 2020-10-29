@@ -29,22 +29,22 @@
     "unist-util-modify-children": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "^16.0.0",
+    "browserify": "^17.0.0",
     "nlcst-emoji-modifier": "^4.0.0",
     "nlcst-emoticon-modifier": "^1.0.0",
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
-    "remark-cli": "^8.0.0",
-    "remark-preset-wooorm": "^7.0.0",
+    "remark-cli": "^9.0.0",
+    "remark-preset-wooorm": "^8.0.0",
     "retext-english": "^3.0.0",
     "tape": "^5.0.0",
-    "tinyify": "^2.0.0",
+    "tinyify": "^3.0.0",
     "unified": "^9.0.0",
-    "unist-util-remove-position": "^2.0.0",
-    "xo": "^0.32.0"
+    "unist-util-remove-position": "^3.0.0",
+    "xo": "^0.34.0"
   },
   "scripts": {
-    "format": "remark . -qfo && prettier . --write && xo --fix",
+    "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
     "build-bundle": "browserify . -s nlcstAffixEmoticonModifier > nlcst-affix-emoticon-modifier.js",
     "build-mangle": "browserify . -s nlcstAffixEmoticonModifier -p tinyify -o nlcst-affix-emoticon-modifier.min.js",
     "build": "npm run build-bundle && npm run build-mangle",

@@ -13,7 +13,7 @@ function mergeAffixEmoticon(child, index, parent) {
   var node
   var previous
 
-  if (children && children.length !== 0 && index !== 0) {
+  if (children && children.length > 0 && index !== 0) {
     position = -1
 
     while (children[++position]) {

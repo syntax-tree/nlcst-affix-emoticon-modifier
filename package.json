@@ -41,12 +41,12 @@
     "tinyify": "^3.0.0",
     "unified": "^9.0.0",
     "unist-util-remove-position": "^3.0.0",
-    "xo": "^0.34.0"
+    "xo": "^0.35.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "build-bundle": "browserify . -s nlcstAffixEmoticonModifier > nlcst-affix-emoticon-modifier.js",
-    "build-mangle": "browserify . -s nlcstAffixEmoticonModifier -p tinyify -o nlcst-affix-emoticon-modifier.min.js",
+    "build-bundle": "browserify . -s nlcstAffixEmoticonModifier -o nlcst-affix-emoticon-modifier.js",
+    "build-mangle": "browserify . -s nlcstAffixEmoticonModifier -o nlcst-affix-emoticon-modifier.min.js -p tinyify",
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test/index.js",

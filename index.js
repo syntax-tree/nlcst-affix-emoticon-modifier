@@ -1,10 +1,23 @@
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ */
+
 import {modifyChildren} from 'unist-util-modify-children'
 
 export const affixEmoticonModifier = modifyChildren(mergeAffixEmoticon)
 
-// Merge emoticons into an `EmoticonNode`.
+/**
+ * Merge emoticons into an `EmoticonNode`.
+ *
+ * @param {Node} child
+ * @param {number} index
+ * @param {Parent} parent
+ */
 function mergeAffixEmoticon(child, index, parent) {
   var siblings = parent.children
+  /** @type {Array.<Node>} */
+  // @ts-ignore looks like a parent.
   var children = child.children
   var childIndex = -1
 

@@ -1,17 +1,24 @@
+/**
+ * @typedef {import('unist').Node} Node
+ */
+
 import fs from 'fs'
 import path from 'path'
 import test from 'tape'
 import unified from 'unified'
+// @ts-ignore remove when typed.
 import english from 'retext-english'
 import {emojiModifier} from 'nlcst-emoji-modifier'
 import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {removePosition} from 'unist-util-remove-position'
 import {affixEmoticonModifier} from '../index.js'
 
+/** @type {Node} */
 var lollipop = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'lollipop.json')))
 )
 
+/** @type {Node} */
 var smile = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'smile.json')))
 )
@@ -19,6 +26,7 @@ var smile = JSON.parse(
 test('affixEmoticonModifier()', function (t) {
   t.throws(
     function () {
+      // @ts-ignore runtime.
       affixEmoticonModifier({})
     },
     /Missing children in `parent`/,
@@ -52,11 +60,17 @@ test('affixEmoticonModifier()', function (t) {
   t.end()
 })
 
-// Short-cut to access the CST.
+/**
+ * Shortcut to access the CST.
+ *
+ * @param {string} fixture
+ * @param {boolean} [positionless=false]
+ */
 function process(fixture, positionless) {
   var processor = unified().use(english).use(plugin).freeze()
 
   if (positionless) {
+    // type-coverage:ignore-next-line
     processor.Parser.prototype.position = false
   }
 
@@ -65,7 +79,10 @@ function process(fixture, positionless) {
 
 // Add modifier to processor.
 function plugin() {
+  // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
+  // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)
+  // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeParagraph', affixEmoticonModifier)
 }

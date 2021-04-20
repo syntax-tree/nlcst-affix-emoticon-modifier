@@ -1,20 +1,25 @@
-'use strict'
+import fs from 'fs'
+import path from 'path'
+import test from 'tape'
+import unified from 'unified'
+import english from 'retext-english'
+import {emojiModifier} from 'nlcst-emoji-modifier'
+import {emoticonModifier} from 'nlcst-emoticon-modifier'
+import {removePosition} from 'unist-util-remove-position'
+import {affixEmoticonModifier} from '../index.js'
 
-var test = require('tape')
-var unified = require('unified')
-var english = require('retext-english')
-var emojiModifier = require('nlcst-emoji-modifier')
-var emoticonModifier = require('nlcst-emoticon-modifier')
-var remove = require('unist-util-remove-position')
+var lollipop = JSON.parse(
+  String(fs.readFileSync(path.join('test', 'fixtures', 'lollipop.json')))
+)
 
-var lollipop = require('./fixtures/lollipop')
-var smile = require('./fixtures/smile')
-var modifier = require('..')
+var smile = JSON.parse(
+  String(fs.readFileSync(path.join('test', 'fixtures', 'smile.json')))
+)
 
-test('nlcst-affix-emoticon-modifier()', function (t) {
+test('affixEmoticonModifier()', function (t) {
   t.throws(
     function () {
-      modifier({})
+      affixEmoticonModifier({})
     },
     /Missing children in `parent`/,
     'should throw when not given a parent'
@@ -28,7 +33,7 @@ test('nlcst-affix-emoticon-modifier()', function (t) {
 
   t.deepEqual(
     process('Lol! :lollipop: That’s cool.', true),
-    remove(lollipop, true),
+    removePosition(lollipop, true),
     'should merge at sentence-start (1, positionless)'
   )
 
@@ -40,7 +45,7 @@ test('nlcst-affix-emoticon-modifier()', function (t) {
 
   t.deepEqual(
     process('Lol! :) That’s cool.', true),
-    remove(smile, true),
+    removePosition(smile, true),
     'should merge at sentence-start (2, positionless)'
   )
 
@@ -62,5 +67,5 @@ function process(fixture, positionless) {
 function plugin() {
   this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
   this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)
-  this.Parser.prototype.useFirst('tokenizeParagraph', modifier)
+  this.Parser.prototype.useFirst('tokenizeParagraph', affixEmoticonModifier)
 }

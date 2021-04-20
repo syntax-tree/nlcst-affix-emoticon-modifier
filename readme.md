@@ -16,6 +16,9 @@ the previous sentence, after a terminal marker.  :unamused:
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -25,13 +28,15 @@ npm install nlcst-affix-emoticon-modifier
 ## Use
 
 ```js
-var affixEmoticon = require('nlcst-affix-emoticon-modifier')
-var emoticon = require('nlcst-emoticon-modifier')
-var inspect = require('unist-util-inspect')
-var english = require('parse-english')()
+import {affixEmoticonModifier} from 'nlcst-affix-emoticon-modifier'
+import {emoticonModifier} from 'nlcst-emoticon-modifier'
+import {inspect} from 'unist-util-inspect'
+import {ParseEnglish} from 'parse-english'
 
-english.useFirst('tokenizeSentence', emoticon)
-english.useFirst('tokenizeParagraph', affixEmoticon)
+var english = new ParseEnglish()
+
+english.useFirst('tokenizeSentence', emoticonModifier)
+english.useFirst('tokenizeParagraph', affixEmoticonModifier)
 
 console.log(inspect(english.parse('Hey. :) How is it going?')))
 ```
@@ -39,33 +44,36 @@ console.log(inspect(english.parse('Hey. :) How is it going?')))
 Yields:
 
 ```txt
-RootNode[1]
-└─ ParagraphNode[3]
-   ├─ SentenceNode[4]
-   │  ├─ WordNode[1]
-   │  │  └─ TextNode: 'Hey'
-   │  ├─ PunctuationNode: '.'
-   │  ├─ WhiteSpaceNode: ' '
-   │  └─ EmoticonNode: ':)'
-   ├─ WhiteSpaceNode: ' '
-   └─ SentenceNode[8]
-      ├─ WordNode[1]
-      │  └─ TextNode: 'How'
-      ├─ WhiteSpaceNode: ' '
-      ├─ WordNode[1]
-      │  └─ TextNode: 'is'
-      ├─ WhiteSpaceNode: ' '
-      ├─ WordNode[1]
-      │  └─ TextNode: 'it'
-      ├─ WhiteSpaceNode: ' '
-      ├─ WordNode[1]
-      │  └─ TextNode: 'going'
-      └─ PunctuationNode: '?'
+RootNode[1] (1:1-1:25, 0-24)
+└─0 ParagraphNode[3] (1:1-1:25, 0-24)
+    ├─0 SentenceNode[4] (1:1-1:8, 0-7)
+    │   ├─0 WordNode[1] (1:1-1:4, 0-3)
+    │   │   └─0 TextNode "Hey" (1:1-1:4, 0-3)
+    │   ├─1 PunctuationNode "." (1:4-1:5, 3-4)
+    │   ├─2 WhiteSpaceNode " " (1:5-1:6, 4-5)
+    │   └─3 EmoticonNode ":)" (1:6-1:8, 5-7)
+    ├─1 WhiteSpaceNode " " (1:8-1:9, 7-8)
+    └─2 SentenceNode[8] (1:9-1:25, 8-24)
+        ├─0 WordNode[1] (1:9-1:12, 8-11)
+        │   └─0 TextNode "How" (1:9-1:12, 8-11)
+        ├─1 WhiteSpaceNode " " (1:12-1:13, 11-12)
+        ├─2 WordNode[1] (1:13-1:15, 12-14)
+        │   └─0 TextNode "is" (1:13-1:15, 12-14)
+        ├─3 WhiteSpaceNode " " (1:15-1:16, 14-15)
+        ├─4 WordNode[1] (1:16-1:18, 15-17)
+        │   └─0 TextNode "it" (1:16-1:18, 15-17)
+        ├─5 WhiteSpaceNode " " (1:18-1:19, 17-18)
+        ├─6 WordNode[1] (1:19-1:24, 18-23)
+        │   └─0 TextNode "going" (1:19-1:24, 18-23)
+        └─7 PunctuationNode "?" (1:24-1:25, 23-24)
 ```
 
 ## API
 
-### `affixEmoticon(paragraph)`
+This package exports the following identifiers: `affixEmoticonModifier`.
+There is no default export.
+
+### `affixEmoticonModifier(paragraph)`
 
 Merge affix emoticons (`EmoticonNode`) into the previous sentence.
 

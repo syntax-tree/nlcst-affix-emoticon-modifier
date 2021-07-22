@@ -33,7 +33,7 @@ import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {inspect} from 'unist-util-inspect'
 import {ParseEnglish} from 'parse-english'
 
-var english = new ParseEnglish()
+const english = new ParseEnglish()
 
 english.useFirst('tokenizeSentence', emoticonModifier)
 english.useFirst('tokenizeParagraph', affixEmoticonModifier)

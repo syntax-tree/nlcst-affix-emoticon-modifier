@@ -14,18 +14,18 @@ import {removePosition} from 'unist-util-remove-position'
 import {affixEmoticonModifier} from '../index.js'
 
 /** @type {Node} */
-var lollipop = JSON.parse(
+const lollipop = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'lollipop.json')))
 )
 
 /** @type {Node} */
-var smile = JSON.parse(
+const smile = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'smile.json')))
 )
 
-test('affixEmoticonModifier()', function (t) {
+test('affixEmoticonModifier()', (t) => {
   t.throws(
-    function () {
+    () => {
       // @ts-ignore runtime.
       affixEmoticonModifier({})
     },
@@ -67,9 +67,10 @@ test('affixEmoticonModifier()', function (t) {
  * @param {boolean} [positionless=false]
  */
 function process(fixture, positionless) {
-  var processor = unified().use(english).use(plugin).freeze()
+  const processor = unified().use(english).use(plugin).freeze()
 
   if (positionless) {
+    // Fine.
     // type-coverage:ignore-next-line
     processor.Parser.prototype.position = false
   }
@@ -79,10 +80,13 @@ function process(fixture, positionless) {
 
 // Add modifier to processor.
 function plugin() {
+  // Fine.
   // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
+  // Fine.
   // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)
+  // Fine.
   // type-coverage:ignore-next-line
   this.Parser.prototype.useFirst('tokenizeParagraph', affixEmoticonModifier)
 }

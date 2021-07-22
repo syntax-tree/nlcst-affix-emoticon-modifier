@@ -16,19 +16,16 @@ export const affixEmoticonModifier = modifyChildren(mergeAffixEmoticon)
  */
 function mergeAffixEmoticon(node, index, ancestor) {
   const previous = ancestor.children[index - 1]
-  var childIndex = -1
 
   if (index && parent(previous) && parent(node)) {
-    var children = node.children
+    const children = node.children
+    let childIndex = -1
 
     while (++childIndex < children.length) {
       const child = children[childIndex]
 
       if (child.type === 'EmoticonNode') {
-        previous.children = [].concat(
-          previous.children,
-          children.slice(0, childIndex + 1)
-        )
+        previous.children.push(...children.slice(0, childIndex + 1))
         node.children = children.slice(childIndex + 1)
 
         if (child.position && node.position && previous.position) {

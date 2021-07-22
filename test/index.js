@@ -5,9 +5,8 @@
 import fs from 'fs'
 import path from 'path'
 import test from 'tape'
-import unified from 'unified'
-// @ts-expect-error remove when typed.
-import english from 'retext-english'
+import {unified} from 'unified'
+import retextEnglish from 'retext-english'
 import {emojiModifier} from 'nlcst-emoji-modifier'
 import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {removePosition} from 'unist-util-remove-position'
@@ -67,9 +66,9 @@ test('affixEmoticonModifier()', (t) => {
  * @param {boolean} [positionless=false]
  */
 function process(fixture, positionless) {
-  const processor = unified().use(english).use(plugin).freeze()
+  const processor = unified().use(retextEnglish).use(plugin).freeze()
 
-  if (positionless) {
+  if (positionless && processor.Parser) {
     // Fine.
     // type-coverage:ignore-next-line
     processor.Parser.prototype.position = false
@@ -84,13 +83,15 @@ function process(fixture, positionless) {
  * @type {import('unified').Plugin<[]>}
  */
 function plugin() {
-  // Fine.
-  // type-coverage:ignore-next-line
-  this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
-  // Fine.
-  // type-coverage:ignore-next-line
-  this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)
-  // Fine.
-  // type-coverage:ignore-next-line
-  this.Parser.prototype.useFirst('tokenizeParagraph', affixEmoticonModifier)
+  if (this.Parser) {
+    // Fine.
+    // type-coverage:ignore-next-line
+    this.Parser.prototype.useFirst('tokenizeSentence', emojiModifier)
+    // Fine.
+    // type-coverage:ignore-next-line
+    this.Parser.prototype.useFirst('tokenizeSentence', emoticonModifier)
+    // Fine.
+    // type-coverage:ignore-next-line
+    this.Parser.prototype.useFirst('tokenizeParagraph', affixEmoticonModifier)
+  }
 }

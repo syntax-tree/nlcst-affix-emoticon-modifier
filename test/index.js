@@ -2,8 +2,8 @@
  * @typedef {import('unist').Node} Node
  */
 
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import test from 'tape'
 import {unified} from 'unified'
 import retextEnglish from 'retext-english'

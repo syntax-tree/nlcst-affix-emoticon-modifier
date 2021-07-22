@@ -6,7 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import test from 'tape'
 import unified from 'unified'
-// @ts-ignore remove when typed.
+// @ts-expect-error remove when typed.
 import english from 'retext-english'
 import {emojiModifier} from 'nlcst-emoji-modifier'
 import {emoticonModifier} from 'nlcst-emoticon-modifier'
@@ -26,7 +26,7 @@ const smile = JSON.parse(
 test('affixEmoticonModifier()', (t) => {
   t.throws(
     () => {
-      // @ts-ignore runtime.
+      // @ts-expect-error runtime.
       affixEmoticonModifier({})
     },
     /Missing children in `parent`/,
@@ -78,7 +78,11 @@ function process(fixture, positionless) {
   return processor.runSync(processor.parse(fixture))
 }
 
-// Add modifier to processor.
+/**
+ * Add modifier to processor.
+ *
+ * @type {import('unified').Plugin<[]>}
+ */
 function plugin() {
   // Fine.
   // type-coverage:ignore-next-line

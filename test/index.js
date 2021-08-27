@@ -1,5 +1,5 @@
 /**
- * @typedef {import('unist').Node} Node
+ * @typedef {import('nlcst').Root} Root
  */
 
 import fs from 'node:fs'
@@ -12,12 +12,12 @@ import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {removePosition} from 'unist-util-remove-position'
 import {affixEmoticonModifier} from '../index.js'
 
-/** @type {Node} */
+/** @type {Root} */
 const lollipop = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'lollipop.json')))
 )
 
-/** @type {Node} */
+/** @type {Root} */
 const smile = JSON.parse(
   String(fs.readFileSync(path.join('test', 'fixtures', 'smile.json')))
 )

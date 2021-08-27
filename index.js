@@ -1,23 +1,28 @@
 /**
- * @typedef {import('unist').Node} Node
- * @typedef {import('unist').Parent} Parent
+ * @typedef {import('nlcst').Paragraph} Paragraph
+ * @typedef {import('nlcst').ParagraphContent} ParagraphContent
+ *
+ * @typedef {import('./complex-types').Emoticon} Emoticon
  */
 
 import {modifyChildren} from 'unist-util-modify-children'
 
-export const affixEmoticonModifier = modifyChildren(mergeAffixEmoticon)
+export const affixEmoticonModifier =
+  /** @type {(node: Paragraph) => void} */
+  // @ts-expect-error: To do: make types in `unist-util-modify-children` smart.
+  modifyChildren(mergeAffixEmoticon)
 
 /**
  * Merge emoticons into an `EmoticonNode`.
  *
- * @param {Node} node
+ * @param {ParagraphContent} node
  * @param {number} index
- * @param {Parent} ancestor
+ * @param {Paragraph} ancestor
  */
 function mergeAffixEmoticon(node, index, ancestor) {
   const previous = ancestor.children[index - 1]
 
-  if (index && parent(previous) && parent(node)) {
+  if (index && 'children' in previous && 'children' in node) {
     const children = node.children
     let childIndex = -1
 
@@ -42,12 +47,4 @@ function mergeAffixEmoticon(node, index, ancestor) {
       }
     }
   }
-}
-
-/**
- * @param {Node} node
- * @returns {node is Parent}
- */
-function parent(node) {
-  return 'children' in node
 }

@@ -8,21 +8,61 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**nlcst**][nlcst] utility to move initial emoticons into the previous sentence.
-Useful because many people place an emoticon, representing emotion related to
-the previous sentence, after a terminal marker.  :unamused:
+[nlcst][] utility to move initial emoticons into the previous sentence.
 
-> **Note**: You probably want to use [retext-emoji][].
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`affixEmoticonModifier(paragraph)`](#affixemoticonmodifierparagraph)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This utility searches emoticon nodes (from
+[`nlcst-emoticon-modifier`][nlcst-emoticon-modifier] and
+[`nlcst-emoji-modifier`][nlcst-emoji-modifier]) that start a sentence and then
+moves them into the previous sentence.
+
+## When should I use this?
+
+This package is a tiny utility that helps when dealing with emoticons in natural
+language.
+It’s useful because many people place an emoticon or emoji, representing emotion
+related to the previous sentence, after a terminal marker.
+😒
+
+The plugin [`retext-emoji`][retext-emoji] wraps this utility and others at a
+higher-level (easier) abstraction.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
 
 ```sh
 npm install nlcst-affix-emoticon-modifier
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {affixEmoticonModifier} from "https://esm.sh/nlcst-affix-emoticon-modifier@2"
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {affixEmoticonModifier} from "https://esm.sh/nlcst-affix-emoticon-modifier@2?bundle"
+</script>
 ```
 
 ## Use
@@ -70,30 +110,55 @@ RootNode[1] (1:1-1:25, 0-24)
 
 ## API
 
-This package exports the following identifiers: `affixEmoticonModifier`.
+This package exports the identifier `affixEmoticonModifier`.
 There is no default export.
 
 ### `affixEmoticonModifier(paragraph)`
 
-Merge affix emoticons (`EmoticonNode`) into the previous sentence.
+Merge affix emoticons (`EmoticonNode`) in `node` ([`Paragraph`][paragraph]).
 
-##### Parameters
+## Types
 
-###### `paragraph`
+This package is fully typed with [TypeScript][].
+It exports no additional types.
 
-The node to process ([`Paragraph`][paragraph]).
+It also registers the `Emoticon` node type with `@types/nlcst`.
+If you’re working with the syntax tree, make sure to import this utility
+somewhere in your types, as that registers the new node types in the tree.
+
+```js
+/**
+ * @typedef {import('nlcst-affix-emoticon-modifier')}
+ */
+
+import {visit} from 'unist-util-visit'
+
+/** @type {import('nlcst').Root} */
+const tree = getNodeSomeHow()
+
+visit(tree, (node) => {
+  // `node` can now be a `Emoticon` node.
+})
+```
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Related
 
 *   [`nlcst-emoticon-modifier`](https://github.com/syntax-tree/nlcst-emoticon-modifier)
-    — Support emoticons
+    — support emoticons
 *   [`nlcst-emoji-modifier`](https://github.com/syntax-tree/nlcst-emoji-modifier)
-    — Support emoji
+    — support emoji and gemoji
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [Code of Conduct][coc].
@@ -134,18 +199,30 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [license]: license
 
 [author]: https://wooorm.com
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[health]: https://github.com/syntax-tree/.github
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [retext-emoji]: https://github.com/retextjs/retext-emoji
 
 [nlcst]: https://github.com/syntax-tree/nlcst
 
 [paragraph]: https://github.com/syntax-tree/nlcst#paragraph
+
+[nlcst-emoticon-modifier]: https://github.com/syntax-tree/nlcst-emoticon-modifier
+
+[nlcst-emoji-modifier]: https://github.com/syntax-tree/nlcst-emoji-modifier

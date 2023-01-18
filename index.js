@@ -7,10 +7,7 @@
 
 import {modifyChildren} from 'unist-util-modify-children'
 
-export const affixEmoticonModifier =
-  /** @type {(node: Paragraph) => void} */
-  // @ts-expect-error: To do: make types in `unist-util-modify-children` smart.
-  modifyChildren(mergeAffixEmoticon)
+export const affixEmoticonModifier = modifyChildren(mergeAffixEmoticon)
 
 /**
  * Merge emoticons into an `EmoticonNode`.

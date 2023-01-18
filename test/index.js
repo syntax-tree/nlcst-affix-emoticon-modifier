@@ -80,6 +80,7 @@ function process(fixture, positionless) {
 /**
  * Add modifier to processor.
  *
+ * @this {import('unified').Processor}
  * @type {import('unified').Plugin<[]>}
  */
 function plugin() {

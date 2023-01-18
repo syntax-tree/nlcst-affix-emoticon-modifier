@@ -2,9 +2,9 @@
  * @typedef {import('nlcst').Root} Root
  */
 
-import fs from 'node:fs'
-import path from 'node:path'
-import test from 'tape'
+import assert from 'node:assert/strict'
+import fs from 'node:fs/promises'
+import test from 'node:test'
 import {unified} from 'unified'
 import retextEnglish from 'retext-english'
 import {emojiModifier} from 'nlcst-emoji-modifier'
@@ -14,16 +14,16 @@ import {affixEmoticonModifier} from '../index.js'
 
 /** @type {Root} */
 const lollipop = JSON.parse(
-  String(fs.readFileSync(path.join('test', 'fixtures', 'lollipop.json')))
+  String(await fs.readFile(new URL('fixtures/lollipop.json', import.meta.url)))
 )
 
 /** @type {Root} */
 const smile = JSON.parse(
-  String(fs.readFileSync(path.join('test', 'fixtures', 'smile.json')))
+  String(await fs.readFile(new URL('fixtures/smile.json', import.meta.url)))
 )
 
-test('affixEmoticonModifier()', (t) => {
-  t.throws(
+test('affixEmoticonModifier()', () => {
+  assert.throws(
     () => {
       // @ts-expect-error runtime.
       affixEmoticonModifier({})
@@ -32,31 +32,29 @@ test('affixEmoticonModifier()', (t) => {
     'should throw when not given a parent'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     process('Lol! :lollipop: That’s cool.'),
     lollipop,
     'should merge at sentence-start (1)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     process('Lol! :lollipop: That’s cool.', true),
     removePosition(lollipop, true),
     'should merge at sentence-start (1, positionless)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     process('Lol! :) That’s cool.'),
     smile,
     'should merge at sentence-start (2)'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     process('Lol! :) That’s cool.', true),
     removePosition(smile, true),
     'should merge at sentence-start (2, positionless)'
   )
-
-  t.end()
 })
 
 /**

@@ -11,6 +11,7 @@ import {emojiModifier} from 'nlcst-emoji-modifier'
 import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {removePosition} from 'unist-util-remove-position'
 import {affixEmoticonModifier} from '../index.js'
+import * as mod from '../index.js'
 
 /** @type {Root} */
 const lollipop = JSON.parse(
@@ -23,6 +24,12 @@ const smile = JSON.parse(
 )
 
 test('affixEmoticonModifier()', () => {
+  assert.deepEqual(
+    Object.keys(mod).sort(),
+    ['affixEmoticonModifier'],
+    'should expose the public api'
+  )
+
   assert.throws(
     () => {
       // @ts-expect-error runtime.

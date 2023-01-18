@@ -2,7 +2,7 @@
  * @typedef {import('nlcst').Paragraph} Paragraph
  * @typedef {import('nlcst').ParagraphContent} ParagraphContent
  *
- * @typedef {import('./complex-types').Emoticon} Emoticon
+ * @typedef {import('./complex-types.js').Emoticon} Emoticon
  */
 
 import {modifyChildren} from 'unist-util-modify-children'

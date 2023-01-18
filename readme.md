@@ -17,7 +17,8 @@
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`affixEmoticonModifier(paragraph)`](#affixemoticonmodifierparagraph)
+    *   [`affixEmoticonModifier(node)`](#affixemoticonmodifiernode)
+    *   [`Emoticon`](#emoticon)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Related](#related)
@@ -45,7 +46,7 @@ higher-level (easier) abstraction.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install nlcst-affix-emoticon-modifier
@@ -54,14 +55,14 @@ npm install nlcst-affix-emoticon-modifier
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {affixEmoticonModifier} from "https://esm.sh/nlcst-affix-emoticon-modifier@2"
+import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@2'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {affixEmoticonModifier} from "https://esm.sh/nlcst-affix-emoticon-modifier@2?bundle"
+  import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@2?bundle'
 </script>
 ```
 
@@ -110,19 +111,36 @@ RootNode[1] (1:1-1:25, 0-24)
 
 ## API
 
-This package exports the identifier `affixEmoticonModifier`.
+This package exports the identifier
+[`affixEmoticonModifier`][affixemoticonmodifier].
 There is no default export.
 
-### `affixEmoticonModifier(paragraph)`
+### `affixEmoticonModifier(node)`
 
-Merge affix emoticons (`EmoticonNode`) in `node` ([`Paragraph`][paragraph]).
+Merge emoticons in `node` into `EmoticonNode`s.
+
+###### Parameters
+
+*   `node` ([`Paragraph`][paragraph])
+    — nlcst paragraph to transform
+
+###### Returns
+
+Nothing (`void`).
+
+### `Emoticon`
+
+Emoticon node (TypeScript type).
+
+See [`Emoticon` in `nlcst-emoticon-modifier`][emoticon-mofifier-emoticon].
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports no additional types.
+It exports the additional type [`Emoticon`][emoticon].
 
-It also registers the `Emoticon` node type with `@types/nlcst`.
+It also registers the `Emoticon` node type with `@types/nlcst` in
+`SentenceContentMap`.
 If you’re working with the syntax tree, make sure to import this utility
 somewhere in your types, as that registers the new node types in the tree.
 
@@ -145,7 +163,7 @@ visit(tree, (node) => {
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Related
@@ -226,3 +244,9 @@ abide by its terms.
 [nlcst-emoticon-modifier]: https://github.com/syntax-tree/nlcst-emoticon-modifier
 
 [nlcst-emoji-modifier]: https://github.com/syntax-tree/nlcst-emoji-modifier
+
+[emoticon-mofifier-emoticon]: https://github.com/syntax-tree/nlcst-emoticon-modifier#emoticon
+
+[affixemoticonmodifier]: #affixemoticonmodifiernode
+
+[emoticon]: #emoticon

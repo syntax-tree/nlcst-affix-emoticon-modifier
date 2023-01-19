@@ -74,12 +74,11 @@ import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {inspect} from 'unist-util-inspect'
 import {ParseEnglish} from 'parse-english'
 
-const english = new ParseEnglish()
+const parser = new ParseEnglish()
+parser.tokenizeSentencePlugins.unshift(emoticonModifier)
+parser.tokenizeParagraphPlugins.unshift(affixEmoticonModifier)
 
-english.useFirst('tokenizeSentence', emoticonModifier)
-english.useFirst('tokenizeParagraph', affixEmoticonModifier)
-
-console.log(inspect(english.parse('Hey. :) How is it going?')))
+console.log(inspect(parser.parse('Hey. :) How is it going?')))
 ```
 
 Yields:

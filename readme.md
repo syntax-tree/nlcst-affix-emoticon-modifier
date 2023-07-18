@@ -125,7 +125,7 @@ Merge emoticons in `node` into `EmoticonNode`s.
 
 ###### Returns
 
-Nothing (`void`).
+Nothing (`undefined`).
 
 ### `Emoticon`
 
@@ -143,6 +143,8 @@ It also registers the `Emoticon` node type with `@types/nlcst` in
 If you’re working with the syntax tree, make sure to import this utility
 somewhere in your types, as that registers the new node types in the tree.
 
+<!-- To do: remove. -->
+
 ```js
 /**
  * @typedef {import('nlcst-affix-emoticon-modifier')}
@@ -153,7 +155,7 @@ import {visit} from 'unist-util-visit'
 /** @type {import('nlcst').Root} */
 const tree = getNodeSomeHow()
 
-visit(tree, (node) => {
+visit(tree, function (node) {
   // `node` can now be a `Emoticon` node.
 })
 ```

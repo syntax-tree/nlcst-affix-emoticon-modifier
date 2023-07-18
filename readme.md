@@ -18,7 +18,6 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`affixEmoticonModifier(node)`](#affixemoticonmodifiernode)
-    *   [`Emoticon`](#emoticon)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Related](#related)
@@ -111,12 +110,15 @@ RootNode[1] (1:1-1:25, 0-24)
 ## API
 
 This package exports the identifier
-[`affixEmoticonModifier`][affixemoticonmodifier].
+[`affixEmoticonModifier`][api-affix-emoticon-modifier].
 There is no default export.
 
 ### `affixEmoticonModifier(node)`
 
 Merge emoticons in `node` into `EmoticonNode`s.
+
+See [`Emoticon` in `nlcst-emoticon-modifier`][emoticon-mofifier-emoticon] for
+that type.
 
 ###### Parameters
 
@@ -127,38 +129,13 @@ Merge emoticons in `node` into `EmoticonNode`s.
 
 Nothing (`undefined`).
 
-### `Emoticon`
-
-Emoticon node (TypeScript type).
-
-See [`Emoticon` in `nlcst-emoticon-modifier`][emoticon-mofifier-emoticon].
-
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports the additional type [`Emoticon`][emoticon].
+It exports no additional types.
 
-It also registers the `Emoticon` node type with `@types/nlcst` in
-`SentenceContentMap`.
-If you’re working with the syntax tree, make sure to import this utility
-somewhere in your types, as that registers the new node types in the tree.
-
-<!-- To do: remove. -->
-
-```js
-/**
- * @typedef {import('nlcst-affix-emoticon-modifier')}
- */
-
-import {visit} from 'unist-util-visit'
-
-/** @type {import('nlcst').Root} */
-const tree = getNodeSomeHow()
-
-visit(tree, function (node) {
-  // `node` can now be a `Emoticon` node.
-})
-```
+See [`Emoticon` in `nlcst-emoticon-modifier`][emoticon-mofifier-emoticon] for
+how to register that type.
 
 ## Compatibility
 
@@ -251,6 +228,4 @@ abide by its terms.
 
 [emoticon-mofifier-emoticon]: https://github.com/syntax-tree/nlcst-emoticon-modifier#emoticon
 
-[affixemoticonmodifier]: #affixemoticonmodifiernode
-
-[emoticon]: #emoticon
+[api-affix-emoticon-modifier]: #affixemoticonmodifiernode

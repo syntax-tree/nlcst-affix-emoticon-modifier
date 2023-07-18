@@ -5,10 +5,10 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import test from 'node:test'
+import {affixEmoticonModifier} from 'nlcst-affix-emoticon-modifier'
 import {emojiModifier} from 'nlcst-emoji-modifier'
 import {emoticonModifier} from 'nlcst-emoticon-modifier'
 import {ParseEnglish} from 'parse-english'
-import {affixEmoticonModifier} from '../index.js'
 
 const parser = new ParseEnglish()
 
@@ -28,9 +28,10 @@ const smile = JSON.parse(
 
 test('affixEmoticonModifier', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), [
-      'affixEmoticonModifier'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('nlcst-affix-emoticon-modifier')).sort(),
+      ['affixEmoticonModifier']
+    )
   })
 
   await t.test('should throw when not given a parent', async function () {

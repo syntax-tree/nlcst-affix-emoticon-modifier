@@ -33,16 +33,16 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/nlcst": "^1.0.0",
-    "@types/unist": "^2.0.0",
-    "nlcst-emoticon-modifier": "^2.0.0",
-    "unist-util-modify-children": "^3.0.0"
+    "@types/nlcst": "^2.0.0",
+    "@types/unist": "^3.0.0",
+    "nlcst-emoticon-modifier": "^3.0.0",
+    "unist-util-modify-children": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "c8": "^8.0.0",
-    "nlcst-emoji-modifier": "^5.0.0",
-    "parse-english": "^6.0.0",
+    "nlcst-emoji-modifier": "^6.0.0",
+    "parse-english": "^7.0.0",
     "prettier": "^3.0.0",
     "remark-cli": "^11.0.0",
     "remark-preset-wooorm": "^9.0.0",

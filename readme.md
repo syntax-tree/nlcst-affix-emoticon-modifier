@@ -54,14 +54,14 @@ npm install nlcst-affix-emoticon-modifier
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@2'
+import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@3'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@2?bundle'
+  import {affixEmoticonModifier} from 'https://esm.sh/nlcst-affix-emoticon-modifier@3?bundle'
 </script>
 ```
 
